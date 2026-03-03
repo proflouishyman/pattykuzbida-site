@@ -36,3 +36,16 @@
 - The Patty Kuzbida site is now repository-based and GitHub Pages-ready.
 - Core Wix routes are preserved on static hosting.
 - The site can be cut over by updating DNS records and then Wix billing can be retired.
+
+## 2026-03-03 - Fix First-Run GitHub Pages Deployment
+
+### Problem
+- The first GitHub Actions deploy failed at `actions/configure-pages@v5` because Pages was not enabled yet for the new repository.
+
+### Solution
+- Updated `.github/workflows/deploy-pages.yml` to use:
+  - `with: enablement: true` under `actions/configure-pages@v5`.
+- This allows the workflow to enable Pages automatically on first run before artifact upload/deploy.
+
+### Outcome
+- New repositories can deploy without manual Pages pre-configuration.
